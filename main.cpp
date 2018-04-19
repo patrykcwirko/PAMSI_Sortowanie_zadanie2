@@ -33,22 +33,8 @@ int main()
         delete [] tDoubleWartosciKopia;
 
     }
-
+//      do strukruty dla kazdej grupy
 //      typ sortowania, typ danych, ilosc danych, upozadkowanie danych
-//    wypelnijTabllice( tWartosci );
-//    switch(SORTOWANIE) {
-//    case 1:
-//        sortSzybkie(tWartosci);
-//        break;
-//    case 2:
-//        sortScalanie(tWartosci);
-//        break;
-//    case 3:
-//        sortIntroSp(tWartosci);
-//        break;
-//    }
-
-//    cout << clock();
 
     return 0;
 }
