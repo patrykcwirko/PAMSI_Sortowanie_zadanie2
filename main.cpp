@@ -1,45 +1,54 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+
 #include "Sort.h"
 
 using namespace std;
 
-//SORTOWANIE 1 - Szybkie
-//SORTOWANIE 2 - Przez Scalanie
-//SORTOWANIE 3 - Introspektywne
-#define SORTOWANIE 1
-
-//#define WIELKOSCTAB 10000
-//#define WIELKOSCTAB 50000
-//#define WIELKOSCTAB 100000
-//#define WIELKOSCTAB 500000
-#define WIELKOSCTAB 1000000
-
 #define ILOSCTAB 100
 
-template <typename T> void wypelnijTabllice( T tWartosci ) {
-
-}
+//#define WIELKOSCTAB { 10000, 50000, 100000, 500000, 1000000 }
+unsigned long long WIELKOSCTAB[] = { 10000ull, 50000ull, 100000ull, 500000ull };
 
 int main()
 {
-    int tWartosci[ILOSCTAB][WIELKOSCTAB];
+    unsigned int wielkosc = sizeof(WIELKOSCTAB)/sizeof(unsigned long long);
+    for(int i=0; i<wielkosc; i++) {
+        //-----------------------------------------------------------------
+        int* tIntWartosciKopia = new int [WIELKOSCTAB[i]];
+        grupaSortowania( "INT" ,WIELKOSCTAB[i], tIntWartosciKopia);
+        delete [] tIntWartosciKopia;
+        //-----------------------------------------------------------------
+        long* tLongWartosciKopia = new long [WIELKOSCTAB[i]];
+        grupaSortowania( "LONG" ,WIELKOSCTAB[i], tLongWartosciKopia);
+        delete [] tLongWartosciKopia;
+        //-----------------------------------------------------------------
+        float* tFloatWartosciKopia = new float [WIELKOSCTAB[i]];
+        grupaSortowania( "FLOAT" ,WIELKOSCTAB[i], tFloatWartosciKopia);
+        delete [] tFloatWartosciKopia;
+        //-----------------------------------------------------------------
+        double* tDoubleWartosciKopia = new double [WIELKOSCTAB[i]];
+        grupaSortowania( "DOUBLE" ,WIELKOSCTAB[i], tDoubleWartosciKopia);
+        delete [] tDoubleWartosciKopia;
 
-    wypelnijTabllice( tWartosci );
-    switch(SORTOWANIE) {
-    case 1:
-        sortSzybkie();
-        break;
-    case 2:
-        sortScalanie();
-        break;
-    case 3:
-        sortIntroSp();
-        break;
     }
 
-    cout << clock();
+//      typ sortowania, typ danych, ilosc danych, upozadkowanie danych
+//    wypelnijTabllice( tWartosci );
+//    switch(SORTOWANIE) {
+//    case 1:
+//        sortSzybkie(tWartosci);
+//        break;
+//    case 2:
+//        sortScalanie(tWartosci);
+//        break;
+//    case 3:
+//        sortIntroSp(tWartosci);
+//        break;
+//    }
+
+//    cout << clock();
 
     return 0;
 }

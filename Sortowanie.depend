@@ -1,11 +1,14 @@
 # depslib dependency file v1.0
-1523910303 source:c:\var\workspace\blockcode.cpp\sortowanie\sort.c
+1524166587 source:c:\var\workspace\blockcode.cpp\sortowanie\sort.cpp
+	"Sort.h"
 
-1523909984 source:c:\var\workspace\blockcode.cpp\sortowanie\main.cpp
+1524172167 c:\var\workspace\blockcode.cpp\sortowanie\sort.h
+	<iostream>
+	<cstring>
+
+1524172066 source:c:\var\workspace\blockcode.cpp\sortowanie\main.cpp
 	<iostream>
 	<vector>
 	<ctime>
 	"Sort.h"
-
-1523910066 c:\var\workspace\blockcode.cpp\sortowanie\sort.h
 
