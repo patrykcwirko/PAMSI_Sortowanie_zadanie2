@@ -9,7 +9,8 @@ using namespace std;
 #define ILOSCTAB 100
 
 //#define WIELKOSCTAB { 10000, 50000, 100000, 500000, 1000000 }
-unsigned long long WIELKOSCTAB[] = { 10000ull, 50000ull, 100000ull, 500000ull };
+//unsigned long long WIELKOSCTAB[] = { 10000ull, 50000ull, 100000ull, 500000ull };
+unsigned long long WIELKOSCTAB[] = { 10ull };
 
 int main()
 {
