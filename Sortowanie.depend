@@ -2,15 +2,16 @@
 1524166587 source:c:\var\workspace\blockcode.cpp\sortowanie\sort.cpp
 	"Sort.h"
 
-1524426138 c:\var\workspace\blockcode.cpp\sortowanie\sort.h
+1524429068 c:\var\workspace\blockcode.cpp\sortowanie\sort.h
 	<iostream>
 	<cstring>
 	<ctime>
 	<ratio>
 	<chrono>
 	"SortSzybkie.h"
+	"SortScalanie.h"
 
-1524425987 source:c:\var\workspace\blockcode.cpp\sortowanie\main.cpp
+1524428379 source:c:\var\workspace\blockcode.cpp\sortowanie\main.cpp
 	<iostream>
 	<vector>
 	<ctime>
@@ -21,7 +22,7 @@
 	<cstring>
 	<ctime>
 
-1524350221 c:\var\workspace\blockcode.cpp\sortowanie\sortscalanie.h
+1524428946 c:\var\workspace\blockcode.cpp\sortowanie\sortscalanie.h
 	<iostream>
 	<cstring>
 	<ctime>
