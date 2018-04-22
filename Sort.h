@@ -9,6 +9,7 @@
 
 #include "SortSzybkie.h"
 #include "SortScalanie.h"
+#include "SortIntroSp.h"
 
 
 using namespace std;
@@ -67,6 +68,19 @@ grupaSortowania( string rodzaj ,long wielkoscTablicy, T* tWartosciKopia ) {
 
     t1 = high_resolution_clock::now();
     sortScalanie(tWartosci, wielkoscTablicy, 0, wielkoscTablicy-1);
+    t2 = high_resolution_clock::now();
+    time_span = duration_cast<duration<double>>(t2 - t1);
+    wyswietlanieTablicy(tWartosci, wielkoscTablicy);
+    cout << "- Czas sortowania " << time_span.count() << endl;
+    //---<<<
+
+    //--->>> Sortowanie introspetywne
+    cout << rodzaj << "::Sortowanie introspetywne " << endl;
+    memcpy ( tWartosci, tWartosciKopia, wielkoscTablicy*sizeof(T) );
+    wyswietlanieTablicy(tWartosci, wielkoscTablicy);
+
+    t1 = high_resolution_clock::now();
+    sortIntroSp(tWartosci, wielkoscTablicy);
     t2 = high_resolution_clock::now();
     time_span = duration_cast<duration<double>>(t2 - t1);
     wyswietlanieTablicy(tWartosci, wielkoscTablicy);
