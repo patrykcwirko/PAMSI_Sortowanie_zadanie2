@@ -21,6 +21,16 @@ using namespace std::chrono;
 #define WYSW_TAB_SORTSCAL 0
 #define WYSW_TAB_SORTINTR 0
 
+//0 - wszystkie losowo
+//1 - 25% uporz퉐kowanych
+//2 - 50% uporz퉐kowanych
+//3 - 75% uporz퉐kowanych
+//4 - 95% uporz퉐kowanych
+//5 - 99% uporz퉐kowanych
+//6 - 99,7% uporz퉐kowanych
+//7 - uporzadkowane w odwrotnej kolejnosci
+#define OPCJE_WYPELNIANIA 1
+
 struct TSortInfo {
     string nazwaSortowania;
     long iloscZmiennych;

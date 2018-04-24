@@ -33,6 +33,9 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Sort.h" />
+		<Unit filename="SortIntroSp.h" />
+		<Unit filename="SortScalanie.h" />
+		<Unit filename="SortSzybkie.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

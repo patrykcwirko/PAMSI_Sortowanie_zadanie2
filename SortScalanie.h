@@ -8,11 +8,11 @@
 using namespace std;
 
 template <typename T>
-T *pom;
+T* pom;
 
 template <typename T>
 void scalanie(T* tab, unsigned long lewy, unsigned long srodek, unsigned long prawy) {
-    T i = lewy, j = srodek + 1;
+    unsigned long i = lewy, j = srodek + 1;
 
     for( unsigned long i=lewy; i <= prawy; i++) {
         *(pom<T> + i) = *(tab+i);
