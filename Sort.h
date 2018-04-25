@@ -21,18 +21,20 @@ using namespace std::chrono;
 #define WYSW_TAB_SORTSCAL 0
 #define WYSW_TAB_SORTINTR 0
 
+#define WYSW_TEST 0
+
 //0 - wszystkie losowo
 //1 - czesciowe wypelnienie
 //2 - uporzadkowane w odwrotnej kolejnosci
-#define OPCJE_WYPELNIANIA 2
+#define OPCJE_WYPELNIANIA 1
 
-//0 - 25% uporzadkowanych
-//1 - 50% uporzadkowanych
-//2 - 75% uporzadkowanych
-//3 - 95% uporzadkowanych
-//4 - 99% uporzadkowanych
-//5 - 99,7% uporzadkowanych
-#define PROCENT_WYPELNIENIA 0
+//25   - 25% uporzadkowanych
+//50   - 50% uporzadkowanych
+//75   - 75% uporzadkowanych
+//95   - 95% uporzadkowanych
+//99   - 99% uporzadkowanych
+//99,7 - 99,7% uporzadkowanych
+#define PROCENT_WYPELNIENIA 99,7
 
 struct TSortInfo {
     string nazwaSortowania;
@@ -97,7 +99,7 @@ void wypelnijTabllice( T* tWartosci, long wielkoscTablicy ) {
         case 1:
             for (long i = 0 ; i < wielkoscTablicy ; ++i) {
                 do
-                    if(i < wielkoscTablicy*PROCENT_WYPELNIENIA ){
+                    if(i < wielkoscTablicy*(PROCENT_WYPELNIENIA/100) ){
                         id = i;
                     } else {
                     id = i + rand() % wielkoscTablicy-i;
@@ -122,11 +124,11 @@ bool sprawdzanieSort( T* tWartosci, long wielkoscTablicy ) {
     for (long i = 0 ; i < wielkoscTablicy ; ++i) {
         if( *(tWartosci+i) >= *(tWartosci+i-1)){
         }else {
-            return 0;
+            return 1;
         }
     }
 //    cout << "OK";
-    return 1;
+    return 0;
 }
 
 template <typename T>
@@ -139,48 +141,42 @@ grupaSortowania( string rodzaj ,long wielkoscTablicy, T* tWartosciKopia, CRaport
     //--->>> Szybkie Sortowanie
     memcpy ( tWartosci, tWartosciKopia, wielkoscTablicy*sizeof(T) );
     if(WYSW_TAB_SORTSZYB) wyswietlanieTablicy(tWartosci, wielkoscTablicy);
-    do{
     t1 = high_resolution_clock::now();
     sortSzybkie(tWartosci, 0, wielkoscTablicy-1);
     t2 = high_resolution_clock::now();
     time_span = duration_cast<duration<double>>(t2 - t1);
-    }while( sprawdzanieSort(tWartosciKopia, wielkoscTablicy) );
     if(WYSW_TAB_SORTSZYB) wyswietlanieTablicy(tWartosci, wielkoscTablicy);
     shared_ptr<TSortInfo> shptrSortSzybkie (
         new TSortInfo("Szybkie", wielkoscTablicy, typeid(T).name(), time_span.count()) );
     raport->dodajSortInfo(shptrSortSzybkie);
     //---<<<
-    cout << "*";
+    if(WYSW_TEST) cout << "*";
     //--->>> Sortowanie przez scalanie
     memcpy ( tWartosci, tWartosciKopia, wielkoscTablicy*sizeof(T) );
     if(WYSW_TAB_SORTSCAL) wyswietlanieTablicy(tWartosci, wielkoscTablicy);
-    do{
     t1 = high_resolution_clock::now();
     sortScalanie(tWartosci, wielkoscTablicy, 0, wielkoscTablicy-1);
     t2 = high_resolution_clock::now();
     time_span = duration_cast<duration<double>>(t2 - t1);
-    }while( sprawdzanieSort(tWartosciKopia, wielkoscTablicy) );
     if(WYSW_TAB_SORTSCAL) wyswietlanieTablicy(tWartosci, wielkoscTablicy);
     shared_ptr<TSortInfo> shptrSortScalanie (
         new TSortInfo("Przez scalanie", wielkoscTablicy, typeid(T).name(), time_span.count()) );
     raport->dodajSortInfo(shptrSortScalanie);
     //---<<<
-    cout << "*";
+    if(WYSW_TEST) cout << "*";
     //--->>> Sortowanie introspetywne
     memcpy ( tWartosci, tWartosciKopia, wielkoscTablicy*sizeof(T) );
     if(WYSW_TAB_SORTINTR) wyswietlanieTablicy(tWartosci, wielkoscTablicy);
-    do{
     t1 = high_resolution_clock::now();
     sortIntroSp(tWartosci, wielkoscTablicy);
     t2 = high_resolution_clock::now();
     time_span = duration_cast<duration<double>>(t2 - t1);
-    }while( sprawdzanieSort(tWartosciKopia, wielkoscTablicy) );
     if(WYSW_TAB_SORTINTR) wyswietlanieTablicy(tWartosci, wielkoscTablicy);
     shared_ptr<TSortInfo> shptrSortIntrospec (
         new TSortInfo("Introspektywne", wielkoscTablicy, typeid(T).name(), time_span.count()) );
     raport->dodajSortInfo(shptrSortIntrospec);
     //---<<<
-    cout << "*" << endl;
+    if(WYSW_TEST) cout << "*" << endl;
     delete [] tWartosci;
 }
 
